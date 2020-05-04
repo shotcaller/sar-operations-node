@@ -1,0 +1,113 @@
+@import url('https://fonts.googleapis.com/css?family=Montserrat&display=swap');
+@import url('https://fonts.googleapis.com/css?family=Comfortaa&display=swap');
+
+#mapid {
+  width: 100%;
+  height: 94vh;
+}
+
+body {
+  background-color: #222;
+}
+
+.home-button {
+  padding-left: 20px;
+  font-family: Montserrat, sans-serif;
+  color: #AAA;
+}
+
+.guide-button   {
+  padding-left: 20px;
+  font-family: Montserrat, sans-serif;
+  color: #AAA;
+}
+
+.reload-button {
+  padding-left: 20px;
+  font-family: Montserrat, sans-serif;
+  color: #AAA;
+}
+
+.map-button {
+  padding-left: 20px;
+  font-family: Montserrat, sans-serif;
+  color: #AAA;
+}
+
+.sidenav {
+  background-color: #222;
+  color: #AAA;
+  font-family: Montserrat, sans-serif;
+}
+
+
+.brand-logo {
+  font-family: Montserrat,sans-serif;
+  color: #AAA;
+}
+
+.logo-head {
+  font-family: Montserrat, sans-serif;
+  color: #AAA;
+  padding-left: 1200px;
+}
+
+h6 {
+  color: #BBB;
+  font-family: Montserrat, sans-serif;
+  font-size: 22px;
+  text-align: right;
+}
+
+.slider {
+  font-family: Comfortaa, sans-serif;
+}
+
+.leaflet-control-layers  {
+  font-family: Montserrat, sans-serif;
+  font-size: 20px;
+}
+.leaflet-control-layers-expanded {
+  color: #222;
+  font-style: italic;
+  font-size: 2px;
+  background: #222;
+  color: #DDD;
+}
+
+#modal1 {
+  background-color: #AAA;
+}
+
+.sidebar-text {
+  margin-top: 20px;
+  font-family: Montserrat, sans-serif;
+  font-size: 15px;
+  color: #ddd;
+}
+
+#lkplatitude, #lkplongitude, #tkflatitude, #tkflongitude, #vel, #alt, #hdg{
+  height: 22px;
+  color: #ddd;
+  font-size: 14px;
+  margin-top: 0px;
+}
+
+label {
+  margin-top: 20px;
+  font-size: 14px;
+  font-weight: 400;
+  color: #ddd;
+}
+
+.input-store {
+  background-color: #222;
+  float: right;
+  margin-top: 20px;
+  margin-bottom: 30px;
+  margin-right: 14px;
+  border-width: 0px;
+  width: 82px;
+  height: 32px;
+  color: #fff;
+}

@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+
+<head>
+  <link rel="icon"
+    href="https://static.vecteezy.com/system/resources/previews/000/552/728/non_2x/geo-location-pin-vector-icon.jpg">
+  <meta charset="utf-8" name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <link rel="stylesheet" href="css/jquery.jscrollpane.css" />
+
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.6.0/dist/leaflet.css"
+    integrity="sha512-xwE/Az9zrjBIphAcBb3F6JVqxf46+CDLwfLMHloNu6KEQCAWi6HcDUbeOfBIptF7tcCzusKFjFw2yuvEpDL9wQ=="
+    crossorigin="" />
+
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap.css">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/css/bootstrap-theme.css">
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.css" />
+  <link rel="stylesheet" href="css/Leaflet.ResizableControl.css" />
+
+  <link rel="stylesheet" href="css/Leaflet.PolylineMeasure.css" />
+  <link rel="stylesheet" href="css/Control.FullScreen.css" />
+
+  <link type="text/css" rel="stylesheet" href="css/materialize.min.css" media="screen,projection" />
+  <link rel="stylesheet" type="text/css" href="css/mapview.css">
+
+  <link rel="stylesheet" href="css/leaflet.mouseCoordinate.css" />
+
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.5/d3.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/topojson/1.6.19/topojson.min.js"></script>
+
+  <script src="https://unpkg.com/leaflet@1.6.0/dist/leaflet.js"
+    integrity="sha512-gZwIG9x3wUXg2hdXF6+rVkLF/0Vi9U8D2Ntg4Ga5I5BZpVkVxlJWbSQtXPSiUTtC0TjtGOmxa1AJPuV0CPthew=="
+    crossorigin=""></script>
+
+  <script src="src/leaflet-geoman.min.js" charset="utf-8"></script>
+
+  <link rel="stylesheet" href="css/leaflet-geoman.css">
+
+  <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.1.0/css/font-awesome.min.css" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/leaflet-velocity.css" />
+  <link rel="stylesheet" href="css/leaflet-sidebar.css">
+  <link rel="stylesheet" href="css/styles.css">
+
+  <title>Map - SAR//Operations</title>
+</head>
+
+<body>
+  <header>
+    <nav>
+      <div class="nav-wrapper grey darken-4">
+        <a href="index.html" class="brand-logo right">
+          <h6>SAR//Operations</h6>
+        </a>
+        <a href="index.html" class="home-button">Home</a>
+        <a href="map.html" class="reload-button" style="color: #FFFFFF">Reload</a>
+        <a href="guide.html" class="guide-button">Guide</a>
+      </div>
+    </nav>
+  </header>
+
+  <body>
+    <div id="sidebar" class="leaflet-sidebar collapsed">
+      <div class="leaflet-sidebar-tabs">
+        <ul role="tablist">
+          <li>
+            <a href="#home" role="tab"><i class="fa fa-bars"></i></a>
+          </li>
+          <li>
+            <a href="#route" role="tab"><i class="fa fa-fighter-jet"></i></a>
+          </li>
+          <li>
+            <a href="#calculate" role="tab"><i class="fa fa-bar-chart-o"></i></a>
+          </li>
+          
+          
+        </ul>
+
+        <ul role="tablist">
+          <li>
+            <a href="#database" role="tab"><i class="fa fa-database"></i></a>
+          </li>
+          <li>
+            <a href="#load-weather" role="tab"><i class="fa fa-cloud-download"></i></a>
+          </li>
+          <li>
+            <a href="#settings" role="tab"><i class="fa fa-gear"></i></a>
+          </li>
+        </ul>
+      </div>
+      <!-- WELCOME TAB -->
+      <div class="leaflet-sidebar-content">
+        <div class="leaflet-sidebar-pane" id="home">
+          <h1 class="leaflet-sidebar-header">
+            Welcome to SAR//Operations
+            <span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+          <div>
+            <p class="sidebar-text">
+              This project focuses on Maritime Search and Rescue Operations of missing aircrafts and oceanic vessels
+              using Bayesian probability statistics.
+            </p>
+          </div>
+        </div>
+        <!-- INPUT TAB -->
+        <div class="leaflet-sidebar-pane" id="route">
+          <h1 class="leaflet-sidebar-header">
+            Route<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+          <p class="sidebar-text">
+            To approximate Maximum Search Area (Probability of Containment), aircraft velocity and heading at the
+            last known point of contact is essential.
+
+            <!-- LKP -->
+            <br><br>
+            <a href="#" class="fa fa-dot-circle-o" style="color: #d11;"></a> 
+            Last known position / point of contact
+            <br>
+            <label for="lkplatitude">Latitude : </label>
+            <input type="number" name="lkplat" id="lkplatitude" step="0.0001">
+            <br>
+            <label for="lkplongitude">Longitude : </label>
+            <input type="number" name="lkplon" id="lkplongitude" step="0.0001">
+           
+            <!-- TakeOff -->
+            <br><br>
+            <a href="#" class="fa fa-plane" style="color: rgb(0, 173, 0);"></a> 
+            Take Off 
+            <br>
+            <label for="tkflatitude">Latitude : </label>
+            <input type="number" name="tfklat" id="tkflatitude" step="0.0001">
+            <br>
+            <label for="tkflongitude">Longitude : </label>
+            <input type="number" name="tkflon" id="tkflongitude" step="0.0001">
+
+            <!-- Land -->
+            <br><br>
+            <a href="#" class="fa fa-plane" style="color: rgb(0, 140, 195);"></a> 
+            Landing (expected)
+            <br>
+            <label for="tkflatitude">Latitude : </label>
+            <input type="number" name="tfklat" id="tkflatitude" step="0.0001">
+            <br>
+            <label for="tkflongitude">Longitude : </label>
+            <input type="number" name="tkflon" id="tkflongitude" step="0.0001">
+
+            <!-- Velocity and Altitude -->
+            <br><br>
+            <a href="#" class="fa fa-long-arrow-right" style="color: aqua;"></a> 
+            Trajectory calculation 
+            <br>
+            <label for="vel">Velocity : </label>
+            <input type="number" name="velocity" id="vel" step="0.1">
+            <br>
+            <label for="alt">Altitude : </label>
+            <input type="number" name="altitude" id="alt" step="0.1">
+            <br>
+            <label for="alt">Heading (degrees from north) : </label>
+            <input type="number" name="heading" id="hdg" step="0.01">
+
+            <button class="input-store">Store</button>
+
+          </p>
+        </div>
+        <!-- WEATHER DATA TAB -->
+        <div class="leaflet-sidebar-pane" id="load-weather">
+          <h1 class="leaflet-sidebar-header">
+            Load Weather Data<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+        </div>
+        <!-- DATABASE TAB -->
+        <div class="leaflet-sidebar-pane" id="database">
+          <h1 class="leaflet-sidebar-header">
+            Database<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+        </div>
+        <!--SETTINGS TAB  -->
+        <div class="leaflet-sidebar-pane" id="settings">
+          <h1 class="leaflet-sidebar-header">
+            Settings<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+        </div>
+        <!-- CALCULATE PROB TAB -->
+        <div class="leaflet-sidebar-pane" id="calculate">
+          <h1 class="leaflet-sidebar-header">
+            Calculate Probability<span class="leaflet-sidebar-close"><i class="fa fa-caret-right"></i></span>
+          </h1>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="wrapper">
+      <div id="mapid"></div>
+    </div>
+
+    <script src="src/Leaflet.PolylineMeasure.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-mousewheel/3.1.12/jquery.mousewheel.js"></script>
+    <script src="src/jquery.jscrollpane.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.4/js/bootstrap.js"></script>
+    <script src="src/Leaflet.ResizableControl.js"></script>
+    <script src="src/leaflet-velocity.js"></script>
+    <script src="src/Leaflet.ResizableControl.js"></script>
+    <script src="src/leaflet.mouseCoordinate.js"></script>
+    <script src="src/Control.FullScreen.js"></script>
+    <script src="src/materialize.min.js"></script>
+    <script src="src/leaflet-sidebar.js"></script>
+    <script src="src/leaflet-heat.js" charset="utf-8"></script>
+    <script src="src/p5.js" charset="utf-8"></script>
+    <script src="leafletApp.js" charset="utf-8"></script>
+    <script src="leaflet_connection.js"></script>
+    <script src="src/arc.js"></script>
+
+  </body>
+
+</html>

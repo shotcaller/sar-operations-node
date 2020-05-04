@@ -1,0 +1,34 @@
+// Requirements import
+const express = require('express')
+const path = require('path')
+const dotenv = require('dotenv')
+const cors = require('cors')
+const mongoose = require('mongoose')
+const connectDB = require('./config/db')
+
+// Env var
+dotenv.config({path: './config/config.env'})
+
+// Connect Database
+connectDB()
+
+const app = express()
+
+// Body Parser
+app.use(express.json()) 
+
+// Enable Cors
+app.use(cors())
+
+// Static folder
+app.use(express.static(path.join(__dirname, 'public')))
+
+// Routes
+app.use('/api/v1/storage', require('./routes/storeval'))
+
+const PORT = process.env.PORT || 3000
+
+app.listen(PORT, () => {console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`)})
+
+
+
