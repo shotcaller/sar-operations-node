@@ -2,7 +2,7 @@ const mongoose = require('mongoose')
 
 const connectDB = async () => {
     try {
-        const conn = await mongoose.connect(process.env.MONGO_URI_OFFLINE, {
+        const conn = await mongoose.connect(process.env.MONGO_URI_ONLINE, {
             useNewUrlParser: true,
             useCreateIndex: true,
             useFindAndModify: false,

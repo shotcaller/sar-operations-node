@@ -4222,7 +4222,7 @@ nav .sidenav-trigger {
   z-index: 1;
   height: 56px;
   margin: 0 18px;
-  color: aqua;
+  color: #aaa;
 }
 
 nav .sidenav-trigger i {
