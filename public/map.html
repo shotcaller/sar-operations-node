@@ -116,7 +116,6 @@
           <p class="sidebar-text">
             To approximate Maximum Search Area (Probability of Containment), aircraft velocity and heading at the
             last known point of contact is essential.
-
             <!-- LKP -->
             <br><br>
             <a href="#" class="fa fa-dot-circle-o" style="color: #d11;"></a> 
@@ -144,11 +143,11 @@
             <a href="#" class="fa fa-plane" style="color: rgb(0, 140, 195);"></a> 
             Landing (expected)
             <br>
-            <label for="tkflatitude">Latitude : </label>
-            <input type="number" name="tfklat" id="tkflatitude" step="0.0001">
+            <label for="ldglatitude">Latitude : </label>
+            <input type="number" name="ldglat" id="ldglatitude" step="0.0001">
             <br>
-            <label for="tkflongitude">Longitude : </label>
-            <input type="number" name="tkflon" id="tkflongitude" step="0.0001">
+            <label for="ldglongitude">Longitude : </label>
+            <input type="number" name="ldglon" id="ldglongitude" step="0.0001">
 
             <!-- Velocity and Altitude -->
             <br><br>
@@ -164,8 +163,8 @@
             <label for="alt">Heading (degrees from north) : </label>
             <input type="number" name="heading" id="hdg" step="0.01">
 
-            <button class="input-store">Store</button>
-
+            <!-- Btn -->
+            <button class="input-store" id="input-store-button" onclick="addToDatabase()">Store</button>
           </p>
         </div>
         <!-- WEATHER DATA TAB -->

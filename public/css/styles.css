@@ -66,14 +66,22 @@ h6 {
 .leaflet-control-layers  {
   font-family: Montserrat, sans-serif;
   font-size: 20px;
+  line-height: 12px;
 }
+
 .leaflet-control-layers-expanded {
   color: #222;
-  font-style: italic;
   font-size: 2px;
   background: #222;
+  padding: 6px 10px 6px 6px;
+  margin: 0px 0px 0px 0px;
   color: #DDD;
 }
+
+.leaflet-control-layers-separator {
+	height: 0;
+  margin: 5px -10px 5px -6px;
+	}
 
 #modal1 {
   background-color: #AAA;

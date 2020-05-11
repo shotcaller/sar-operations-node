@@ -194,29 +194,49 @@ $.getJSON('json/wind_10m.json', function (data) {
       velocityType: 'Global Wind [10m]',
       displayPosition: 'bottomleft',
       displayEmptyString: 'No wind data',
-      speedUnit: 'nm',
+      speedUnit: 'm/s',
     },
     data: data,
-    maxVelocity: 18,
+    maxVelocity: 30,
     minVelocity: 0,
+    velocityScale: 0.02,
+    opacity: 0.1 
   });
   layerControl.addOverlay(velocityLayer, 'Wind [Ground+10m]');
 });
 
-$.getJSON('json/wind_100m.json', function (data) {
+$.getJSON('json/wind_6000m.json', function (data) {
   var velocityLayer = L.velocityLayer({
     displayValues: true,
     displayOptions: {
-      velocityType: 'Global Wind [100m]',
+      velocityType: 'Global Wind [6000m]',
       displayPosition: 'bottomleft',
       displayEmptyString: 'No wind data',
-      speedUnit: 'nm',
+      speedUnit: 'm/s',
     },
     data: data,
-    maxVelocity: 18,
+    maxVelocity: 30,
     minVelocity: 0,
+    velocityScale: 0.02,
+    opacity: 0.1
   });
-  layerControl.addOverlay(velocityLayer, 'Wind [Ground+100m]');
+  layerControl.addOverlay(velocityLayer, 'Wind [Ground+6000m]');
+});
+
+$.getJSON('json/oscar_grib.json', function (data) {
+  var velocityLayer = L.velocityLayer({
+    displayValues: true,
+    displayOptions: {
+      velocityType: 'Global Ocean Current',
+      displayPosition: 'bottomleft',
+      displayEmptyString: 'No current data',
+      speedUnit: 'm/s',
+    },
+    data: data,
+    maxVelocity: 1,
+    velocityScale: 0.5,
+  });
+  layerControl.addOverlay(velocityLayer, 'Ocean currents [Experimental]');
 });
 
 var sidebar = L.control.sidebar({

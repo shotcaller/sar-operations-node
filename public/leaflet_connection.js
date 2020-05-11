@@ -1,22 +1,22 @@
-const inputForm = document.getElementById("submit")
+const inputForm = document.getElementById("submit");
 
-const velocity = document.getElementById("icon_speed")
-const altitude = document.getElementById("icon_altitude")
+const velocity = document.getElementById("vel");
+const altitude = document.getElementById("alt");
+const heading = document.getElementById("hdg");
 
-const startCourseLong = document.getElementById("icon_start_x")
-const startCourseLat = document.getElementById("icon_start_y")
+const startCourseLong = document.getElementById("tkflongitude");
+const startCourseLat = document.getElementById("tkflatitude");
 
-const endCourseLong = document.getElementById("icon_destination_x")
-const endCourseLat = document.getElementById("icon_destination_y")
+const endCourseLong = document.getElementById("ldglongitude");
+const endCourseLat = document.getElementById("ldglatitude");
 
-const lastKnownLong = document.getElementById("icon_lkp_x")
-const lastKnownLat = document.getElementById("icon_lkp_y")
+const lastKnownLong = document.getElementById("lkplongitude");
+const lastKnownLat = document.getElementById("lkplatitude");
 
 //Add to database function
 async function addToDatabase() {
     var recentCreation = new Date()
-    var timeStamp = `${recentCreation.getDate()}/${recentCreation.getMonth()}/${recentCreation.getFullYear()}_${recentCreation.getHours()}:${recentCreation.getMinutes()}:${recentCreation.getSeconds}` 
-    recentCreation.get
+    var timeStamp = `${recentCreation.getDate()}/${recentCreation.getMonth()}/${recentCreation.getFullYear()}_${recentCreation.getHours()}:${recentCreation.getMinutes()}:${recentCreation.getSeconds()}` 
     console.log(timeStamp);
     
     const sendBody = {
@@ -24,6 +24,7 @@ async function addToDatabase() {
         input: {
             velocity: velocity.value,
             altitude: altitude.value,
+            heading: heading.value,
             trueCourseStart: {
                 trueCourseStartLat: startCourseLat.value,
                 trueCourseStartLong: startCourseLong.value
@@ -57,6 +58,8 @@ async function addToDatabase() {
         alert(err)
         return
     }
+
+    fetchInput();
 }
 
 async function fetchInput() {
@@ -69,11 +72,11 @@ async function fetchInput() {
         return {
             velocity: inputNode.input.velocity,
             altitude: inputNode.input.altitude,
+            heading: inputNode.input.heading,
             _createdAt: inputNode._createdAt,
             _id: inputNode._id
         }
     })
-
     console.log(inputPlot)
 }
 
@@ -83,14 +86,14 @@ async function flyAnimation() {
     const res = await fetch('/api/v1/storage')
     const data = await res.json()
 
-    var startCourseLong = startCourseLong.value
-    var startCourseLat = startCourseLat.value
+    var startCourseLong = startCourseLong.value;
+    var startCourseLat = startCourseLat.value;
 
-    var endCourseLong = endCourseLong.value
-    var endCourseLat = endCourseLat.value
+    var endCourseLong = endCourseLong.value;
+    var endCourseLat = endCourseLat.value;
 
-    var lastKnownLong = lastKnownLong.value
-    var lastKnownLat = lastKnownLat.value
+    var lastKnownLong = lastKnownLong.value;
+    var lastKnownLat = lastKnownLat.value;
 
 
     var corner1 = L.latLng(startCourseLat, startCourseLong);

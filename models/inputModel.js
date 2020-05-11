@@ -16,6 +16,11 @@ const InputSchema = new mongoose.Schema({
             required: [true, 'Please input altitude'],
             trim: true
         },
+        heading: {
+            type: Number,
+            required: [true, 'Please input heading'],
+            trim: true
+        },
         trueCourseStart: {
             trueCourseStartLat: {
                 type: Number,
