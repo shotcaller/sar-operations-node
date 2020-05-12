@@ -110,18 +110,23 @@ function clearForm() {
 // }
 
 async function fetchInput() {
-    console.log('called: testfetch');
+    console.log('called -> testFetch');
     const flightcode = "flightmajor"
     const res = await fetch('/api/v1/testparams/' + flightcode, {
         method: 'GET'
     })
     const data = await res.json()
     console.log(data);
-
-    const inputs = data.data._createdAt;
-    console.log(inputs);
-    console.log(data.data._id);
-    console.log(data.data.identifier);
+    if(data.data._id)
+        console.log("No discrepancies found in fetch.");
+    console.log("Try: Fetch -> test.data");    
+    console.log("ID: " + data.data._id);
+    console.log("Identifier: " + data.data.identifier);
+    console.log("Fetch -> Done");
+    console.log("Awaiting state");
+    setTimeout(() => {
+        console.log("Ready.");
+    }, 2000);
 }
 
 async function flyAnimation() {
@@ -132,7 +137,7 @@ async function flyAnimation() {
     })
     const data = await res.json()
 
-    console.log("confirm: fetch => animation");    
+    console.log("confirm: fetch -> animation");    
 
     var startCourseLat = data.data.input.trueCourseStart.trueCourseStartLong;
     var startCourseLong = data.data.input.trueCourseStart.trueCourseStartLat;
