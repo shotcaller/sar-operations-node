@@ -218,6 +218,3 @@ async function flyAnimation() {
 }
 
 fetchInput();
-setTimeout(() => {
-    flyAnimation();
-}, 2000);
