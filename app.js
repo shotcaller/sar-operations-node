@@ -24,11 +24,11 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.use('/api/v1/storage', require('./routes/storeval'))
+app.use('/', require('./routes/storeval'))
 
 const PORT = process.env.PORT || 3000
 
-app.listen(process.env.PORT || 3000, () => {console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`)})
+app.listen(PORT || 3000, () => {console.log(`Server Running in ${process.env.NODE_ENV} mode on port ${PORT}`)})
 
 
 
