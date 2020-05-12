@@ -1,5 +1,7 @@
 const inputForm = document.getElementById("submit");
 
+const identifier = document.getElementById("idt");
+
 const velocity = document.getElementById("vel");
 const altitude = document.getElementById("alt");
 const heading = document.getElementById("hdg");
@@ -13,6 +15,8 @@ const endCourseLat = document.getElementById("ldglatitude");
 const lastKnownLong = document.getElementById("lkplongitude");
 const lastKnownLat = document.getElementById("lkplatitude");
 
+const notification = document.getElementById("notification")
+
 //Add to database function
 async function addToDatabase() {
     var recentCreation = new Date()
@@ -21,6 +25,7 @@ async function addToDatabase() {
     
     const sendBody = {
         _createdAt: timeStamp,
+        identifier: identifier.value,
         input: {
             velocity: velocity.value,
             altitude: altitude.value,
@@ -49,7 +54,6 @@ async function addToDatabase() {
             body: JSON.stringify(sendBody)
         })
         console.log("Added")
-
         if (res.status === 400) {
             throw Error('Duplicate values')
         }
@@ -59,42 +63,85 @@ async function addToDatabase() {
         return
     }
 
-    fetchInput();
+    console.log(identifier.value);
+    
+    clearForm();
+    notification.innerHTML = "Values stored to DB";
+    notification.focus();
 }
 
-async function fetchInput() {
-    const res = await fetch('/api/v1/storage')
-    const data = await res.json()
+function clearForm() {
+    identifier.value = "";
+    velocity.value = "";
+    altitude.value = "";
+    heading.value = "";
+    lastKnownLat.value = "";
+    lastKnownLong.value = "";
+    startCourseLat.value = "";
+    startCourseLong.value = "";
+    endCourseLat.value = "";
+    endCourseLong.value = "";
+}
 
+// async function fetchInput() {
+//     const res = await fetch('/api/v1/routetest')
+//     const data = await res.json()
+
+//     console.log(data);
+
+//     const inputs = data.data.map( input => {
+//         if (input._createdAt) {
+//             return {
+//                     _createdAt: input._createdAt,
+//                     _id: input._id
+//             }
+//         }
+//     })
+//     console.log(inputs)
+// }
+
+// async function fetchInput() {
+//         const res = await fetch('/api/v1/storage', {
+//             method: 'GET'
+//         })
+//         const data = await res.json()
+    
+//         console.log(data)
+// }
+
+async function fetchInput() {
+    console.log('called: testfetch');
+    const flightcode = "flightmajor"
+    const res = await fetch('/api/v1/testparams/' + flightcode, {
+        method: 'GET'
+    })
+    const data = await res.json()
     console.log(data);
 
-    const inputPlot = data.data.map( inputNode => {
-        return {
-            velocity: inputNode.input.velocity,
-            altitude: inputNode.input.altitude,
-            heading: inputNode.input.heading,
-            _createdAt: inputNode._createdAt,
-            _id: inputNode._id
-        }
-    })
-    console.log(inputPlot)
+    const inputs = data.data._createdAt;
+    console.log(inputs);
+    console.log(data.data._id);
+    console.log(data.data.identifier);
 }
 
 async function flyAnimation() {
-    console.log("In fly");
-
-    const res = await fetch('/api/v1/storage')
+    console.log('called: animation');
+    const flightcode = "flightmajor"
+    const res = await fetch('/api/v1/testparams/' + flightcode, {
+        method: 'GET'
+    })
     const data = await res.json()
 
-    var startCourseLong = startCourseLong.value;
-    var startCourseLat = startCourseLat.value;
+    console.log("confirm: fetch => animation");    
 
-    var endCourseLong = endCourseLong.value;
-    var endCourseLat = endCourseLat.value;
+    var startCourseLat = data.data.input.trueCourseStart.trueCourseStartLong;
+    var startCourseLong = data.data.input.trueCourseStart.trueCourseStartLat;
 
-    var lastKnownLong = lastKnownLong.value;
-    var lastKnownLat = lastKnownLat.value;
+    var endCourseLat = data.data.input.trueCourseEnd.trueCourseEndLong;
+    var endCourseLong = data.data.input.trueCourseEnd.trueCourseEndLat;
 
+    var lastKnownLat = data.data.input.lastKnownPosition.lastKnownLong;
+    var lastKnownLong = data.data.input.lastKnownPosition.lastKnownLat;
 
     var corner1 = L.latLng(startCourseLat, startCourseLong);
     var corner2 = L.latLng(endCourseLat, endCourseLong);
@@ -149,7 +196,7 @@ async function flyAnimation() {
     }, 6000);
 
     setTimeout(() => {
-        lkpPopUp = L.marker([lastKnownLong, lastKnownLat]).addTo(mymap).bindPopup("Last known Position.");
+        lkpPopUp = L.marker([lastKnownLong, lastKnownLat]).addTo(mymap).bindPopup("Last known Position. <br> Alt: " + data.data.input.altitude + "m | velocity: " + data.data.input.velocity + "kt/h");
         mymap.zoomIn();
     }, 7500);
     setTimeout(() => {
@@ -170,4 +217,7 @@ async function flyAnimation() {
 
 }
 
-fetchInput()
+fetchInput();
+setTimeout(() => {
+    flyAnimation();
+}, 2000);
