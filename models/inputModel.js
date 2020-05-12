@@ -5,6 +5,10 @@ const InputSchema = new mongoose.Schema({
         type: String,
         required: true
     },
+    identifier: {
+        type: String,
+        required: true
+    },
     input: {
         velocity: {
             type: Number,
@@ -60,4 +64,4 @@ const InputSchema = new mongoose.Schema({
     }
 })
 
-module.exports = mongoose.model('inputSchema', InputSchema)
+module.exports = mongoose.model('Input', InputSchema)
