@@ -160,11 +160,16 @@
             <label for="alt">Altitude : </label>
             <input type="number" name="altitude" id="alt" step="0.1">
             <br>
-            <label for="alt">Heading (degrees from north) : </label>
+            <label for="hdg">Heading (degrees from north) : </label>
             <input type="number" name="heading" id="hdg" step="0.01">
+            <br>
+            <label for="idt">Data Identifier* : </label>
+            <input type="text" name="identifier" id="idt">
 
             <!-- Btn -->
             <button class="input-store" id="input-store-button" onclick="addToDatabase()">Store</button>
+            <br>
+            <p id="notification"></p>
           </p>
         </div>
         <!-- WEATHER DATA TAB -->

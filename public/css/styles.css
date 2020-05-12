@@ -94,7 +94,7 @@ h6 {
   color: #ddd;
 }
 
-#lkplatitude, #lkplongitude, #tkflatitude, #tkflongitude, #vel, #alt, #hdg{
+#lkplatitude, #lkplongitude, #tkflatitude, #tkflongitude, #ldglatitude, #ldglongitude, #vel, #alt, #hdg, #idt{
   height: 22px;
   color: #ddd;
   font-size: 14px;
@@ -118,4 +118,12 @@ label {
   width: 82px;
   height: 32px;
   color: #fff;
+}
+
+#notification {
+  position: relative;
+  font-family: Montserrat, sans-serif;
+  font-size: 14px;
+  color: rgb(204, 0, 0);
+  margin-top: 30px;
 }
