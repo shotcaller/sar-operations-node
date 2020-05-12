@@ -4,10 +4,9 @@ const inputVals = require('../models/inputModel')
 // @access public
 // @route GET /api/v1/storage
 
-exports.displayInput = async (req, res, next) => {
+exports.displayAllInputs = async (req, res, next) => {
     try {
         const showInput = await inputVals.find()
-
         return res.status(200).json({
             success: true,
             count: showInput.length,
@@ -23,7 +22,7 @@ exports.displayInput = async (req, res, next) => {
 // @access public
 // @route POST /api/v1/storage
 
-exports.storeInput = async (req, res, next) => {
+exports.storeAllInputs = async (req, res, next) => {
     try {
         const storeVal = await inputVals.create(req.body)
         return res.status(200).json({
@@ -36,18 +35,17 @@ exports.storeInput = async (req, res, next) => {
     }
 }
 
-
 // @desc fetch only created timestamp
 // @access public
-// @route GET /api/v1/storage
+// @route GET /api/v1/creation
 
 exports.displayInputCreation = async (req, res, next) => {
     try {
-        const showInput = await inputVals.find({}, {_createdAt: 1})
+        const showDate = await inputVals.find({}, {_createdAt: 1})
 
         return res.status(200).json({
             success: true,
-            data: showInput
+            data: showDate
         })
     } catch (err) {
         console.error(err)
