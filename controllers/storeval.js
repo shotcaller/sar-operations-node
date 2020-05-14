@@ -41,7 +41,7 @@ exports.storeAllInputs = async (req, res, next) => {
 
 exports.displayInputCreation = async (req, res, next) => {
     try {
-        const showDate = await inputVals.find({}, {_createdAt: 1})
+        const showDate = await inputVals.find({}, {identifier: 1})
 
         return res.status(200).json({
             success: true,

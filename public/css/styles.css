@@ -127,3 +127,18 @@ label {
   color: rgb(204, 0, 0);
   margin-top: 30px;
 }
+
+#dynamic-list {
+  color: #AAA;
+  font-family: Montserrat, sans-serif;
+  font-size: 16px;
+}
+
+#element {
+  background-color: #222;
+  margin-top: 10px;
+  border-width: 0px;
+  height: 32px;
+  width: 90%;
+  color: #fff;
+}

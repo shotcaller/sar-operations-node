@@ -9,7 +9,7 @@ const {
 const router = express.Router()
 
 router.route('/api/v1/storage').get(displayAllInputs).post(storeAllInputs)
-router.route('/api/v1/routetest').get(displayInputCreation)
+router.route('/api/v1/enumerate').get(displayInputCreation)
 
 router.route('/api/v1/testparams/:idt')
 .get(function(req, res){

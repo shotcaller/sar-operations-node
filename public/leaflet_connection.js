@@ -16,6 +16,7 @@ const lastKnownLong = document.getElementById("lkplongitude");
 const lastKnownLat = document.getElementById("lkplatitude");
 
 const notification = document.getElementById("notification")
+const database = document.getElementById("database");
 
 //Add to database function
 async function addToDatabase() {
@@ -83,22 +84,29 @@ function clearForm() {
     endCourseLong.value = "";
 }
 
-// async function fetchInput() {
-//     const res = await fetch('/api/v1/routetest')
-//     const data = await res.json()
+async function enumeration() {
+    const res = await fetch('/api/v1/enumerate')
+    const data = await res.json()
+    var arr = []
 
-//     console.log(data);
+    console.log(data);
 
-//     const inputs = data.data.map( input => {
-//         if (input._createdAt) {
-//             return {
-//                     _createdAt: input._createdAt,
-//                     _id: input._id
-//             }
-//         }
-//     })
-//     console.log(inputs)
-// }
+    data.data.map( input => {
+        if (input.identifier) {
+            arr.push(input.identifier)
+        }
+    })
+    console.log(arr)
+
+    txt = "<ul id=\"dynamic-list\">"
+    arr.forEach(createList)
+    txt += "</ul>"
+    database.innerHTML = txt
+
+    function createList(value) {
+        txt += "<button id=\"element\" onClick=flyAnimation(\"" + value + "\")>" + value + "</button>";
+    }
+}
 
 // async function fetchInput() {
 //         const res = await fetch('/api/v1/storage', {
@@ -129,9 +137,9 @@ async function fetchInput() {
     }, 2000);
 }
 
-async function flyAnimation() {
+async function flyAnimation(flightcode) {
     console.log('called: animation');
-    const flightcode = "flightmajor"
+    // const flightcode = "flightmajor"
     const res = await fetch('/api/v1/testparams/' + flightcode, {
         method: 'GET'
     })
@@ -223,3 +231,4 @@ async function flyAnimation() {
 }
 
 fetchInput();
+enumeration();
