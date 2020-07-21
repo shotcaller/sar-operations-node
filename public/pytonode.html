@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PyToNode</title>
+
+    <link rel="stylesheet" href="css/materialize.min.css">
+    
+</head>
+<body style="background-color: #212121; padding: 20px;">
+<div class="container">
+    <div class="row">
+        <div class=" col s12 m8" style="padding: 10px;">
+            <input class="white-text" placeholder="Parameters" id="parambox" type="text" class="validate">
+            <label for="parambox">Parameters</label>
+        </div>
+        <div class="col s0 m4">
+    <button id='button' class="waves-effect waves-light cyan  btn" style="margin-top: 10px; color: #3a3a3a; font-weight: 500;" >Run Py Script</button>
+</div>
+</div>
+
+    <ul class="collection with-header" id='output'>
+        <li class="collection-item" style="background-color: #3a3a3a; color: #dfdfdf; border: none"><h4>Output</h4></li>
+
+      </ul>
+</div>    
+<script src="./src/pyToNode.js"></script>
+<script type="text/javascript" src="src/materialize.min.js"></script>
+
+</body>
+</html>

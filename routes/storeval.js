@@ -25,4 +25,48 @@ router.route('/api/v1/testparams/:idt')
     })
 })
 
+router.get('/api/pycode',(req, res) => {
+    let resData
+    const exec = require('child_process').exec;
+        
+        const myShellScript = exec(`bash bashscript.sh`);
+        myShellScript.stdout.on('data', (data)=>{
+            console.log(data); 
+            resData = data
+            res.send(data)
+            // do whatever you want here with data
+        });
+        myShellScript.stderr.on('data', (data)=>{
+            console.log(data)
+
+
+        })
+
+})
+
+// router.get('/api/pycode',(req, res) => {
+//     let resData
+//     const { PythonShell } = require('python-shell')
+
+//     if(Object.keys(req.body).length>0){
+//     options = {
+//         args : req.body
+//         }
+//     }
+//     else options=null
+    
+//     console.log(Object.keys(req.body).length)
+
+//     PythonShell.run(`${__dirname}/samplepy.py`,options, (err, result) => {
+//         if(err) throw err
+//         console.log('Python Output:')
+//         console.log(result)
+//         resData = result
+//         res.send(resData)
+//     })
+
+
+// })
+
+
 module.exports = router

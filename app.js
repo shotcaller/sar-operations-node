@@ -6,6 +6,7 @@ const cors = require('cors')
 const mongoose = require('mongoose')
 const connectDB = require('./config/db')
 
+
 // Env var
 dotenv.config({path: './config/config.env'})
 
@@ -24,7 +25,9 @@ app.use(cors())
 app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
-app.use('/', require('./routes/storeval'))
+ app.use('/', require('./routes/storeval'))
+//  app.use('/pycode', require('./routes/pycode'))
+
 
 const PORT = process.env.PORT || 3000
 
