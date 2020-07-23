@@ -26,6 +26,7 @@ app.use(express.static(path.join(__dirname, 'public')))
 
 // Routes
  app.use('/', require('./routes/storeval'))
+ app.use('/shellparams', require('./routes/shellParams'))
 //  app.use('/pycode', require('./routes/pycode'))
 
 
